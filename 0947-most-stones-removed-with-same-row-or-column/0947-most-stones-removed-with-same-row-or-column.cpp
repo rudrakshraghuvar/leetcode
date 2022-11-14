@@ -10,9 +10,9 @@ public:
     }
     
     int findUPar(int node) {
-    if(node == parent[node])
-        return node;
-    return parent[node] = findUPar(parent[node]);
+        if(node == parent[node])
+            return node;
+        return parent[node] = findUPar(parent[node]);
     }
 
     void unionByRank(int u, int v) {
@@ -54,18 +54,18 @@ public:
             maxCol = max(maxCol, it[1]);
         }
         DisjointSet ds(maxRow + maxCol +1);
-        unordered_map<int, int> stoneNodes;
+        unordered_set<int> stoneNodes;
         for(auto it : stones) {
             int nodeRow = it[0];
             int nodeCol = it[1] + maxRow + 1;
             ds.unionBySize(nodeRow, nodeCol);
-            stoneNodes[nodeRow] = 1;
-            stoneNodes[nodeCol] = 1;
+            stoneNodes.insert(nodeRow);
+            stoneNodes.insert(nodeCol);
         }
         
         int cnt = 0;
         for(auto it : stoneNodes) {
-            if(ds.findUPar(it.first) == it.first)
+            if(ds.findUPar(it) == it)
                 cnt++;
         }
         
