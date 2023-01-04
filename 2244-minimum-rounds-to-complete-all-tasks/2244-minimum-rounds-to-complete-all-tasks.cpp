@@ -14,28 +14,8 @@ public:
                 return -1;
             else if(x % 3 == 0)
                 ans += x/3;
-            else if(x % 2 == 0) {
-                if(x % 3 == 1) {
-                    x -= 3;
-                    ans += x/3;
-                    ans += 2;
-                }
-                else {
-                    ans += x/3;
-                    ans += 1;
-                }
-            }
-            else {
-                if(x % 3 == 1) {
-                    x -= 3;
-                    ans += x/3;
-                    ans += 2;
-                }
-                else {
-                    ans += x/3;
-                    ans += 1;
-                }
-            }
+            else
+                ans += x/3 + 1;
         }
         
         return ans;
