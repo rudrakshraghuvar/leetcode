@@ -7,31 +7,15 @@ public:
     }
     
     vector<int> vowelStrings(vector<string>& w, vector<vector<int>>& q) {
-        int n = q.size();
-        vector<int> ans(n), tmp;
+        vector<int> ans, tmp(1);
         
         for(auto s : w) {
             int l = s.size();
-            if(isVowel(s[0]) && isVowel(s[l-1]))
-                tmp.push_back(1);
-            else
-                tmp.push_back(0);
+            tmp.push_back(tmp.back() + (isVowel(s[0]) && isVowel(s[l-1])));
         }
-        int s = tmp.size();
-        vector<int> preSum(s);
-        preSum[0] = tmp[0];
-        
-        for(int i = 1; i < s; i++)
-            preSum[i] = tmp[i] + preSum[i-1];
-        
-        int i = 0;
-        for(auto x : q) {
-            if(x[0] == 0)
-                ans[i] = preSum[x[1]];
-            else
-                ans[i] = preSum[x[1]]-preSum[x[0]-1];
-            i++;
-        }
+    
+        for(auto x : q)
+            ans.push_back(tmp[x[1]+1] - tmp[x[0]]);
         
         return ans;
     }
