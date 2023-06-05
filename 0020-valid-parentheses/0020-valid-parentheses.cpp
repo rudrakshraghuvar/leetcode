@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool isValid(string s) {
-        stack <int> stk;
+        stack<char> stk;
         
         for(auto i : s) {
             if(i == '(' || i == '{' || i == '[')
