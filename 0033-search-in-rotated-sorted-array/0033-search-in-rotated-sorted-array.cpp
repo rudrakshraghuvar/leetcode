@@ -1,13 +1,23 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        // time complexity O(n)
+        // time complexity O(log n) 
         
-        for(int i = 0; i < nums.size(); i++) {
-            if(nums[i] == target)
-                return i;
+        int lo = 0, hi = nums.size();
+        while (lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+
+            double num = (nums[mid] < nums[0]) == (target < nums[0])
+                       ? nums[mid]
+                       : target < nums[0] ? -INFINITY : INFINITY;
+
+            if (num < target)
+                lo = mid + 1;
+            else if (num > target)
+                hi = mid;
+            else
+                return mid;
         }
-        
         return -1;
     }
 };
