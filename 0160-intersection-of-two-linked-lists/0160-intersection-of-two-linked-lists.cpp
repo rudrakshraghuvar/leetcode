@@ -12,9 +12,6 @@ public:
         ListNode *A = headA;
         ListNode *B = headB;
         
-        if(A == NULL || B == NULL)
-            return NULL;
-        
         while(A != B) {
             if(A == NULL)
                 A = headB;
